@@ -8,7 +8,10 @@ public class CarTest {
     @Test
     public void carEqualsTest(){
         String myReg = "DA-01-NF-5100";
-        String myColour = "Black";
+        String myColour = "BlacK";
+
+        String sameReg = "da-01-nf-5100";
+        String sameColour = "black";
 
         String diffReg = "DA-01-NF-5000";
         String diffColour = "Blue";
@@ -17,8 +20,8 @@ public class CarTest {
         Car sameCar = new Car();
         Car diffCar = new Car();
 
-        sameCar.setRegistrationNo(myReg);
-        sameCar.setColour(myColour);
+        sameCar.setRegistrationNo(sameReg);
+        sameCar.setColour(sameColour);
 
         diffCar.setRegistrationNo(diffReg);
         diffCar.setColour(diffColour);

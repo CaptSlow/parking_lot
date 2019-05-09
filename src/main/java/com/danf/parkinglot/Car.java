@@ -9,8 +9,8 @@ public class Car {
     }
 
     public Car(String registrationNo, String colour) {
-        this.registrationNo = registrationNo;
-        this.colour = colour;
+        this.registrationNo = registrationNo.toUpperCase();
+        this.colour = colour.toUpperCase();
     }
 
     public String getRegistrationNo() {
@@ -18,7 +18,7 @@ public class Car {
     }
 
     public void setRegistrationNo(String registrationNo) {
-        this.registrationNo = registrationNo;
+        this.registrationNo = registrationNo.toUpperCase();
     }
 
     public String getColour() {
@@ -26,7 +26,7 @@ public class Car {
     }
 
     public void setColour(String colour) {
-        this.colour = colour;
+        this.colour = colour.toUpperCase();
     }
 
     @Override
