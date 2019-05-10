@@ -1,7 +1,5 @@
 package com.danf.parkinglot;
 
-import java.util.Objects;
-
 public class ParkingSpace {
 
     private boolean isFree;

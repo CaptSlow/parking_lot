@@ -12,4 +12,16 @@ public class Application {
 
     }
 
+    private void create_parking_lot(){
+
+    }
+
+    private void registration_numbers_for_cars_with_colour(){
+
+    }
+
+    private void slot_numbers_for_cars_with_colour(){
+
+    }
+
 }
