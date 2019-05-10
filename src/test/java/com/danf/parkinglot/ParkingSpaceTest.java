@@ -60,4 +60,16 @@ public class ParkingSpaceTest {
 
     }
 
+
+    @Test
+    public void parkingSpaceToStringTest(){
+        Car myCar = new Car("Reg1","Green");
+        ParkingSpace mySpace = new ParkingSpace(myCar);
+        
+        ParkingSpace freeSpace = new ParkingSpace();
+
+        Assert.assertEquals("REG1" + "\t" + "Green", mySpace.toString());
+        Assert.assertEquals("is free", freeSpace.toString());
+    }
+
 }

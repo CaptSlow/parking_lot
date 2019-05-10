@@ -45,6 +45,11 @@ public class ParkingSpace {
 
     // methods
 
+    @Override
+    public String toString() {
+        return this.isFree ? "is free" : ( this.carInSpace.getRegistrationNo() + "\t" + this.carInSpace.getColour() );
+    }
+
     public void print(){
         if (this.isFree){
             System.out.println("is free");
