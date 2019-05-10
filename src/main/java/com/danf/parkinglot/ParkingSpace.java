@@ -8,8 +8,8 @@ public class ParkingSpace {
 
     // Constructors
 
-    public ParkingSpace(boolean isFree) {
-        this.isFree = isFree;
+    public ParkingSpace(){
+        this.isFree=true;
     }
 
     public ParkingSpace(Car carInSpace) {
@@ -35,14 +35,22 @@ public class ParkingSpace {
         this.carInSpace = carInSpace;
     }
 
-
-    // methods
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ParkingSpace that = (ParkingSpace) o;
         return isFree == that.isFree && this.carInSpace.equals(that.carInSpace);
+    }
+
+    // methods
+
+    public void print(){
+        if (this.isFree){
+            System.out.println("is free");
+        } else {
+            this.getCarInSpace().print();
+        }
     }
 
 }
