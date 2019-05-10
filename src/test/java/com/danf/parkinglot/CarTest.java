@@ -3,6 +3,9 @@ package com.danf.parkinglot;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 public class CarTest {
 
     @Test
@@ -29,6 +32,24 @@ public class CarTest {
         Assert.assertNotNull(myCar);
         Assert.assertEquals(myCar,sameCar);
         Assert.assertNotEquals(myCar,diffCar);
+
+    }
+
+    @Test
+    public void carPrintTest(){
+        String myReg = "da-01-nf-5100";
+        String myColour = "BlacK";
+
+        Car myCar = new Car(myReg,myColour);
+
+        ByteArrayOutputStream actualPrint = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualPrint));
+
+        String expPrint = myCar.getRegistrationNo() + "\t" + myCar.getColour() + "\r\n";
+
+        myCar.print();
+
+        Assert.assertEquals(expPrint, actualPrint.toString());
 
     }
 
