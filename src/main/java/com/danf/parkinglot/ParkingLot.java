@@ -22,7 +22,7 @@ public class ParkingLot {
     //    ******* METHODS ********
 
     public void print(){
-        System.out.println("No" + "\t" + "Registration Slot No." + "\t" + "Colour");
+        System.out.println("No" + "\t" + "Registration No." + "\t" + "Colour");
         int i = 0;
         for ( ParkingSpace ps : this.spaceList ) {
             i++;
@@ -32,13 +32,20 @@ public class ParkingLot {
 
     // method to return the lowest number parking space that is free
     public int firstFreeSpace(){
-        int spotNum = 0;
+        int freeSpot=-1;
 
-        while ( !this.spaceList[spotNum].isFree() ){
-            spotNum++;
+        for (int i=0; i<this.spaceList.length; i++){
+            if (this.spaceList[i].isFree()){
+                freeSpot=i;
+                break;
+            }
         }
 
-        return spotNum==this.spaceList.length ? -1 : spotNum;
+//        while ( !this.spaceList[spotNum].isFree() && spotNum<this.spaceList.length ){
+//            spotNum++;
+//        }
+
+        return freeSpot;
     }
 
     public void parkInGivenSpot(Car car, int spotNum){
