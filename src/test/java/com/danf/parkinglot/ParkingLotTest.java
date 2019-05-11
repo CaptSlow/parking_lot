@@ -7,6 +7,7 @@ import org.junit.rules.ExpectedException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 
 public class ParkingLotTest {
 
@@ -161,12 +162,35 @@ public class ParkingLotTest {
     }
 
     @Test
-    public void getWhiteCarsSlotNumbersTest(){
+    public void getRegCarsByColourTest(){
+
+        String myCol = "Blue";
+        ParkingLot myParking = new ParkingLot(PARKING_SIZE);
+        Car myCar = new Car("DA-26-NF-1234",myCol);
+        Car gCar = new Car("DA-26-NF-1234","Green");
+        Car oCar = new Car("DA-26-NF-1234","Orange");
+
+        myParking.parkCar(myCar);
+        myParking.parkCar(gCar);
+        myParking.parkCar(oCar);
+        myParking.parkCar(myCar);
+
+        ArrayList<Car> blueList = myParking.getCarsByColour(myCol);
+        Assert.assertEquals(myCar,blueList.get(1));
+
+        String expPrint = "DA-26-NF-1234,DA-26-NF-1234\r\n";
+        ByteArrayOutputStream actualPrint = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualPrint));
+
+        myParking.registrationNumbersForCarsColour(myCol);
+
+        Assert.assertEquals(expPrint, actualPrint.toString());
 
     }
 
+
     @Test
-    public void getWhiteCarsRegistrationNumbersTest(){
+    public void getSlotCarsByColourTest(){
 
     }
 

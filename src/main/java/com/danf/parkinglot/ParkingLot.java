@@ -1,5 +1,7 @@
 package com.danf.parkinglot;
 
+import java.util.ArrayList;
+
 public class ParkingLot {
 
     private int numSpaces;
@@ -104,19 +106,47 @@ public class ParkingLot {
         System.out.println(REM_CAR_STR_I + (slotNumber+1) + REM_CAR_STR_II);
     }
 
+    public ArrayList<Car> getCarsByColour(String colour){
+//        int colourCount=0;
+        ArrayList<Car> colourList = new ArrayList<>();
+
+        for (int i = 0; i < this.spaceList.length; i++) {
+            if (!this.spaceList[i].isFree() &&
+                    this.spaceList[i].getCarInSpace().getColour().equals(colour)){
+                colourList.add(this.spaceList[i].getCarInSpace());
+            }
+        }
+        return colourList;
+    }
+
     public void slotNumbersForCarsColour(String colour){
-        // todo return/print slots for cars
+
     }
 
     public void registrationNumbersForCarsColour(String colour){
-        // todo return/print regs for cars
+        ArrayList<Car> colList = this.getCarsByColour(colour);
+        int i=0;
+        for (Car car : colList){
+            if (i==colList.size()-1){
+                System.out.println(car.getRegistrationNo());
+            } else {
+                System.out.print(car.getRegistrationNo() + ",");
+                i++;
+            }
+        }
+
     }
 
+    /**
+     * writes out slot number of car with given registration
+     * @param regNumber of car whose slot we're looking for
+     */
     public void slotForRegNumber(String regNumber){
         // return slot for reg number
         boolean exists=false;
         for (int i = 0; i < this.spaceList.length; i++) {
-            if (this.spaceList[i].getCarInSpace().getRegistrationNo().equals(regNumber)){
+            if (!this.spaceList[i].isFree() &&
+                    this.spaceList[i].getCarInSpace().getRegistrationNo().equals(regNumber)){
                 System.out.println(i+1);
                 exists=true;
             }
