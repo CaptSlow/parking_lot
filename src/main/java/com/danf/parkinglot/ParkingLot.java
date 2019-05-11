@@ -50,7 +50,9 @@ public class ParkingLot {
         int i = 0;
         for ( ParkingSpace ps : this.spaceList ) {
             i++;
-            System.out.println(i + "\t" + ps.toString());
+            if (!ps.isFree()) {
+                System.out.println(i + "\t" + ps.toString());
+            }
         }
     }
 

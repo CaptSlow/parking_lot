@@ -18,7 +18,7 @@ public class ParkingLotTest {
     private final String REM_CAR_STR_II =  " is free";
 
     @Test
-    public void makeParkingLotNumSpacesTest(){
+    public void makeParkingLotTest(){
         ParkingLot myParking = new ParkingLot(PARKING_SIZE);
 
         Assert.assertNotNull(myParking);
@@ -45,6 +45,30 @@ public class ParkingLotTest {
 
         myParking.parkInGivenSpot(vCar,4);
         Assert.assertEquals(-1,myParking.firstFreeSpace());
+    }
+
+    @Test
+    public void parkingLotPrintTest(){
+        int size = 2;
+        String myReg = "DA-26-NF-1234";
+        String myCol = "Orange";
+        ParkingLot myParking = new ParkingLot(size);
+        Car myCar = new Car(myReg,myCol);
+
+        for ( int i=0; i<size; i++) {
+            myParking.parkCar(myCar);
+        }
+
+        myParking.removeCar(0);
+
+        String expPrint = "No" + "\t" + "Registration No." + "\t" + "Colour" + "\r\n" +
+                size + "\t" + myReg + "\t" + myCol + "\r\n";
+        ByteArrayOutputStream actualPrint = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualPrint));
+
+        myParking.print();
+        Assert.assertEquals(expPrint, actualPrint.toString());
+
     }
 
     @Rule
