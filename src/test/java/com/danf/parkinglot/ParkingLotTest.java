@@ -14,6 +14,8 @@ public class ParkingLotTest {
     private final String IS_FREE_STR = "is free";
     private final String LOT_FULL_STR = "Sorry, parking lot is full";
     private final String ALLOCATE_STR = "Allocated slot number: ";
+    private final String REM_CAR_STR_I = "Slot number ";
+    private final String REM_CAR_STR_II =  " is free";
 
     @Test
     public void makeParkingLotNumSpacesTest(){
@@ -116,6 +118,21 @@ public class ParkingLotTest {
 
     @Test
     public void removeCarTest(){
+        ParkingLot myParking = new ParkingLot(PARKING_SIZE);
+        Car myCar = new Car("DA-26-NF-1234","Orange");
+
+        for ( int i=0; i<PARKING_SIZE; i++) {
+            myParking.parkCar(myCar);
+        }
+
+        String expPrint = REM_CAR_STR_I + PARKING_SIZE + REM_CAR_STR_II + "\r\n";
+        ByteArrayOutputStream actualPrint = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualPrint));
+
+        myParking.removeCar(PARKING_SIZE-1);
+
+        Assert.assertEquals(expPrint, actualPrint.toString());
+        Assert.assertTrue(myParking.getSpaceList()[PARKING_SIZE-1].isFree());
 
     }
 

@@ -12,11 +12,14 @@ public class ParkingLot {
     private final String REG_NO_STR = "Registration No.";
     private final String COLOUR_STR= "Colour";
     private final String ALLOCATE_STR = "Allocated slot number: ";
+    private final String REM_CAR_STR_I = "Slot number ";
+    private final String REM_CAR_STR_II =  " is free";
 
 
     /**
      * Parking lot constructor
-     * @param numSpaces the size of the car park
+     * @param numSpaces the size of the car park, has to be more than 0
+     * Has to have a number of spaces or it is not created
      */
     public ParkingLot(int numSpaces) {
         if (numSpaces<1){
@@ -66,10 +69,14 @@ public class ParkingLot {
         return freeSpot;
     }
 
+    /**
+     * Parks a car in a specific spot
+     * @param car to park
+     * @param spotNum to park in
+     */
     public void parkInGivenSpot(Car car, int spotNum){
         this.spaceList[spotNum] = new ParkingSpace(car);
     }
-
 
     /**
      * method to park car - in lowest number parking space
@@ -86,10 +93,13 @@ public class ParkingLot {
 
     }
 
-
+    /**
+     * Remove a car from a slot
+     * @param slotNumber that car is remove from
+     */
     public void removeCar(int slotNumber) {
-        // todo remove car from a specific spot
-        System.out.println("Slot number " + slotNumber + " is free");
+        this.spaceList[slotNumber] = new ParkingSpace();
+        System.out.println(REM_CAR_STR_I + (slotNumber+1) + REM_CAR_STR_II);
     }
 
 }
