@@ -18,6 +18,9 @@ public class ParkingLotTest {
     private final String REM_CAR_STR_I = "Slot number ";
     private final String REM_CAR_STR_II =  " is free";
 
+    /**
+     * Tests the constructor of the parking lot
+     */
     @Test
     public void makeParkingLotTest(){
         ParkingLot myParking = new ParkingLot(PARKING_SIZE);
@@ -27,6 +30,9 @@ public class ParkingLotTest {
         Assert.assertEquals(PARKING_SIZE, myParking.getSpaceList().length);
     }
 
+    /**
+     * Tests finding the first free space in the parking lot
+     */
     @Test
     public void firstFreeSpaceTest(){
         ParkingLot myParking = new ParkingLot(5);
@@ -75,7 +81,10 @@ public class ParkingLotTest {
     @Rule
     public ExpectedException thrown= ExpectedException.none();
 
-    // expects an ArrayIndexOutOfBoundsException
+    /**
+     * tests adding to a space beyond size of parking lot
+     * expects an ArrayIndexOutOfBoundsException
+     */
     @Test
     public void tooManyCarsTest(){
         ParkingLot myParking = new ParkingLot(PARKING_SIZE);
@@ -163,17 +172,10 @@ public class ParkingLotTest {
 
     @Test
     public void getRegCarsByColourTest(){
-
         String myCol = "Blue";
-        ParkingLot myParking = new ParkingLot(PARKING_SIZE);
         Car myCar = new Car("DA-26-NF-1234",myCol);
-        Car gCar = new Car("DA-26-NF-1234","Green");
-        Car oCar = new Car("DA-26-NF-1234","Orange");
 
-        myParking.parkCar(myCar);
-        myParking.parkCar(gCar);
-        myParking.parkCar(oCar);
-        myParking.parkCar(myCar);
+        ParkingLot myParking = getFullLot();
 
         ArrayList<Car> blueList = myParking.getCarsByColour(myCol);
         Assert.assertEquals(myCar,blueList.get(1));
@@ -188,10 +190,26 @@ public class ParkingLotTest {
 
     }
 
+    private ParkingLot getFullLot(){
+        String myCol = "Blue";
+        ParkingLot myParking = new ParkingLot(PARKING_SIZE);
+        Car myCar = new Car("DA-26-NF-1234",myCol);
+        Car gCar = new Car("DA-26-NF-1234","Green");
+        Car oCar = new Car("DA-26-NF-1234","Orange");
+
+        myParking.parkCar(myCar);
+        myParking.parkCar(gCar);
+        myParking.parkCar(oCar);
+        myParking.parkCar(myCar);
+
+        return myParking;
+
+    }
 
     @Test
-    public void getSlotCarsByColourTest(){
-
+    public void slotNumbersForCarsColourTest(){
+        ParkingLot myParking = getFullLot();
+        Assert.assertEquals("1,4\r\n", myParking.slotNumbersForCarsColour("Blue"));
     }
 
     @Test

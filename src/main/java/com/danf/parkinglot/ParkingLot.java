@@ -119,7 +119,26 @@ public class ParkingLot {
         return colourList;
     }
 
-    public void slotNumbersForCarsColour(String colour){
+    public String slotNumbersForCarsColour(String colour){
+        String slotStr = "";
+        String myCol = "Blue";
+        int numCarsColour = this.getCarsByColour(myCol).size();
+        int count = 0;
+
+        for (int i = 0; i < this.spaceList.length; i++) {
+            if (!this.spaceList[i].isFree() &&
+                    this.spaceList[i].getCarInSpace().getColour().equals(colour)){
+
+                if (count==numCarsColour-1){
+                    slotStr = slotStr.concat((i+1) + "\r\n");
+                    count++;
+                } else {
+                    slotStr = slotStr.concat((i+1) + ",");
+                    count++;
+                }
+            }
+        }
+        return slotStr;
 
     }
 
@@ -155,4 +174,5 @@ public class ParkingLot {
                 System.out.println("Not found");
             }
     }
+
 }
