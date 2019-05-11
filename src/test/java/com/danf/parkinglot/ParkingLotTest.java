@@ -170,4 +170,31 @@ public class ParkingLotTest {
 
     }
 
+    @Test
+    public void slotForRegNumberTest(){
+        int size = 2;
+        String myReg = "DA-26-NF-1234";
+        String otherReg = "XX-26-XX-1234";
+        String diffReg = "OO-26-OO-1234";
+        String myCol = "Orange";
+
+        ParkingLot myParking = new ParkingLot(size);
+        Car myCar = new Car(myReg,myCol);
+        Car otherCar = new Car(otherReg,myCol);
+
+        for ( int i=0; i<size-1; i++) {
+            myParking.parkCar(otherCar);
+        }
+        myParking.parkCar(myCar);
+
+        String expPrint = size + "\r\nNot found\r\n";
+        ByteArrayOutputStream actualPrint = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualPrint));
+
+        myParking.slotForRegNumber(myReg);
+        myParking.slotForRegNumber(diffReg);
+
+        Assert.assertEquals(expPrint, actualPrint.toString());
+
+    }
 }

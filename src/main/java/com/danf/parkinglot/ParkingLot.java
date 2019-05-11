@@ -104,4 +104,25 @@ public class ParkingLot {
         System.out.println(REM_CAR_STR_I + (slotNumber+1) + REM_CAR_STR_II);
     }
 
+    public void slotNumbersForCarsColour(String colour){
+        // todo return/print slots for cars
+    }
+
+    public void registrationNumbersForCarsColour(String colour){
+        // todo return/print regs for cars
+    }
+
+    public void slotForRegNumber(String regNumber){
+        // return slot for reg number
+        boolean exists=false;
+        for (int i = 0; i < this.spaceList.length; i++) {
+            if (this.spaceList[i].getCarInSpace().getRegistrationNo().equals(regNumber)){
+                System.out.println(i+1);
+                exists=true;
+            }
+        }
+            if (!exists){
+                System.out.println("Not found");
+            }
+    }
 }
