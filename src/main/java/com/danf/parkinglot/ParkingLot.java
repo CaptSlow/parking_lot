@@ -13,6 +13,7 @@ public class ParkingLot {
         for (int i=0; i<this.spaceList.length; i++){
             this.spaceList[i] = new ParkingSpace();
         }
+        System.out.println("Created a parking lot with " + numSpaces + " slots");
     }
 
     public ParkingSpace[] getSpaceList() {
