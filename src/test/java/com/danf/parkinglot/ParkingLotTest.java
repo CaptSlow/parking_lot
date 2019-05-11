@@ -209,6 +209,7 @@ public class ParkingLotTest {
     @Test
     public void slotNumbersForCarsColourTest(){
         ParkingLot myParking = getFullLot();
+
         Assert.assertEquals("1,4\r\n", myParking.slotNumbersForCarsColour("Blue"));
     }
 

@@ -144,23 +144,26 @@ public class AppParkingLot {
                 break;
 
             case "registration_numbers_for_cars_with_colour":
+                this.parkingLot.registrationNumbersForCarsColour(inArr[1]);
                 this.interactiveMode();
                 break;
 
-            case "slot_numbers_for_cars_with_colour ":
+            case "slot_numbers_for_cars_with_colour":
+                System.out.print(this.parkingLot.slotNumbersForCarsColour(inArr[1]));
                 this.interactiveMode();
                 break;
 
             case "slot_number_for_registration_number":
+                this.parkingLot.slotForRegNumber(inArr[1]);
                 this.interactiveMode();
                 break;
 
-            case "Exit":
-                System.out.println("Exiting");
+            case "exit":
+                System.out.println("Bye bye");
                 break;
 
             default:
-                System.out.println("Unknown command. Type Exit to exit");
+                System.out.println("Unknown command. Type exit to exit");
                 this.interactiveMode();
         }
 

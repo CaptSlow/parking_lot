@@ -121,14 +121,12 @@ public class ParkingLot {
 
     public String slotNumbersForCarsColour(String colour){
         String slotStr = "";
-        String myCol = "Blue";
-        int numCarsColour = this.getCarsByColour(myCol).size();
+        int numCarsColour = this.getCarsByColour(colour).size();
         int count = 0;
 
         for (int i = 0; i < this.spaceList.length; i++) {
             if (!this.spaceList[i].isFree() &&
                     this.spaceList[i].getCarInSpace().getColour().equals(colour)){
-
                 if (count==numCarsColour-1){
                     slotStr = slotStr.concat((i+1) + "\r\n");
                     count++;
