@@ -39,31 +39,38 @@ public class AppParkingLotTest {
 
     }
 
-//    @Test
-//    public void splitInteractiveInputTest(){
-//        AppParkingLot myApp = new AppParkingLot();
-//
-//        String in = "create_parking_lot 6";
-//        String[] inArr = myApp.splitInteractiveInput(in);
-//
-//        Assert.assertEquals("create_parking_lot", inArr[0] );
-//        Assert.assertEquals("6", inArr[1] );
-//
-//    }
+    @Test
+    public void determineCommandCreateParkingTest(){
+        System.out.println("determineCommandTest");
+        AppParkingLot myApp = new AppParkingLot();
+        myApp.setRunningMode(1);
+        String[] inArr = {"create_parking_lot", "6"};
+        String expPrint = "Created a parking lot with 6 slots\r\n";
+
+        ByteArrayOutputStream actualPrint = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualPrint));
+
+        myApp.determineCommand(inArr);
+
+        Assert.assertEquals(expPrint, actualPrint.toString());
+
+    }
 
     @Test
-    public void determineCommandTest(){
-//        System.out.println("determineCommandTest");
-//        AppParkingLot myApp = new AppParkingLot();
-//        String[] in = {"create_parking_lot", "6"};
-//        String expPrint = "Created a parking lot with 6 slots\r\n";
-//
-//        ByteArrayOutputStream actualPrint = new ByteArrayOutputStream();
-//        System.setOut(new PrintStream(actualPrint));
-//
-//        myApp.determineCommand(in);
-//
-//        Assert.assertEquals(expPrint, actualPrint.toString());
+    public void determineCommandParkCarTest(){
+        System.out.println("determineCommandTest");
+        AppParkingLot myApp = new AppParkingLot();
+        myApp.setRunningMode(1);
+        String[] inArr = {"park", "myreg-123","blue"};
+        myApp.parkingLot = new ParkingLot(6);
+
+        String expPrint = "Allocated slot number: 1\r\n";
+
+        ByteArrayOutputStream actualPrint = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualPrint));
+
+        myApp.determineCommand(inArr);
+        Assert.assertEquals(expPrint, actualPrint.toString());
 
     }
 
