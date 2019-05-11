@@ -5,15 +5,32 @@ public class ParkingLot {
     private int numSpaces;
     private ParkingSpace[] spaceList;
 
-    // constructor
-    public ParkingLot(int numSpaces) {
-        this.numSpaces = numSpaces;
-        this.spaceList = new ParkingSpace[numSpaces];
+    private final String LOT_FULL_STR = "Sorry, parking lot is full";
+    private final String CREATE_LOT_STR_I = "Created a parking lot with ";
+    private final String CREATE_LOT_STR_II = " slots";
+    private final String SLOT_NO_STR = "No";
+    private final String REG_NO_STR = "Registration No.";
+    private final String COLOUR_STR= "Colour";
+    private final String ALLOCATE_STR = "Allocated slot number: ";
 
-        for (int i=0; i<this.spaceList.length; i++){
-            this.spaceList[i] = new ParkingSpace();
+
+    /**
+     * Parking lot constructor
+     * @param numSpaces the size of the car park
+     */
+    public ParkingLot(int numSpaces) {
+        if (numSpaces<1){
+            System.out.println("Cannot create parking lot with less than 1 slot");
+            // TODO expand on this
+        } else {
+            this.numSpaces = numSpaces;
+            this.spaceList = new ParkingSpace[numSpaces];
+
+            for (int i = 0; i < this.spaceList.length; i++) {
+                this.spaceList[i] = new ParkingSpace();
+            }
+            System.out.println(CREATE_LOT_STR_I + numSpaces + CREATE_LOT_STR_II);
         }
-        System.out.println("Created a parking lot with " + numSpaces + " slots");
     }
 
     public ParkingSpace[] getSpaceList() {
@@ -22,8 +39,11 @@ public class ParkingLot {
 
     //    ******* METHODS ********
 
+    /**
+     * Prints the car park's status
+     */
     public void print(){
-        System.out.println("No" + "\t" + "Registration No." + "\t" + "Colour");
+        System.out.println(SLOT_NO_STR + "\t" + REG_NO_STR + "\t" + COLOUR_STR);
         int i = 0;
         for ( ParkingSpace ps : this.spaceList ) {
             i++;
@@ -31,7 +51,9 @@ public class ParkingLot {
         }
     }
 
-    // method to return the lowest number parking space that is free
+    /**
+     * method to return the lowest number parking space that is free
+     */
     public int firstFreeSpace(){
         int freeSpot=-1;
 
@@ -41,11 +63,6 @@ public class ParkingLot {
                 break;
             }
         }
-
-//        while ( !this.spaceList[spotNum].isFree() && spotNum<this.spaceList.length ){
-//            spotNum++;
-//        }
-
         return freeSpot;
     }
 
@@ -54,22 +71,25 @@ public class ParkingLot {
     }
 
 
-    // method to park car - in lowest number parking space
+    /**
+     * method to park car - in lowest number parking space
+     * @param newCar the car to be parked
+     */
     public void parkCar(Car newCar) {
-        // find first free space
-        // add newCar to list spacelist in that index
-        // print out
+        int slot = firstFreeSpace();
+        if (slot==-1) {
+            System.out.println(LOT_FULL_STR);
+        } else {
+            this.parkInGivenSpot(newCar, slot);
+            System.out.println(ALLOCATE_STR + (slot+1));
+        }
+
     }
 
-    private void addCar(Car newCar, int position){
 
-
-
-    }
-
-    public void removeCar(int spaceNumber){
-        // remove car at given place from list
-        // add info to log
+    public void removeCar(int slotNumber) {
+        // todo remove car from a specific spot
+        System.out.println("Slot number " + slotNumber + " is free");
     }
 
 }

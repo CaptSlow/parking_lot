@@ -5,10 +5,15 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 public class ParkingLotTest {
 
     private final int PARKING_SIZE = 6;
-    private String IS_FREE_STR = "is free";
+    private final String IS_FREE_STR = "is free";
+    private final String LOT_FULL_STR = "Sorry, parking lot is full";
+    private final String ALLOCATE_STR = "Allocated slot number: ";
 
     @Test
     public void makeParkingLotNumSpacesTest(){
@@ -71,12 +76,41 @@ public class ParkingLotTest {
     }
 
     @Test
-    public void createParkingLotTest(){
+    public void parkCarTest(){
+        ParkingLot myParking = new ParkingLot(PARKING_SIZE);
+        Car myCar = new Car("DA-26-NF-1234","Orange");
+
+        for ( int i=0; i<PARKING_SIZE-1; i++) {
+            myParking.parkCar(myCar);
+        }
+
+        Assert.assertEquals(myCar, myParking.getSpaceList()[PARKING_SIZE-2].getCarInSpace());
+        Assert.assertTrue(myParking.getSpaceList()[PARKING_SIZE-1].isFree());
+
+        myParking.parkCar(myCar);
+
+        String expPrint = LOT_FULL_STR + "\r\n";
+        ByteArrayOutputStream actualPrint = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualPrint));
+
+        myParking.parkCar(myCar);
+
+        Assert.assertEquals(expPrint, actualPrint.toString());
 
     }
 
     @Test
-    public void parkCarTest(){
+    public void parkCarPrintTest(){
+        ParkingLot myParking = new ParkingLot(PARKING_SIZE);
+        Car myCar = new Car("DA-26-NF-1234","Orange");
+
+        String expPrint = ALLOCATE_STR + "1\r\n";
+        ByteArrayOutputStream actualPrint = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualPrint));
+
+        myParking.parkCar(myCar);
+
+        Assert.assertEquals(expPrint, actualPrint.toString());
 
     }
 
