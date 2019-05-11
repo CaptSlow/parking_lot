@@ -106,6 +106,11 @@ public class ParkingLot {
         System.out.println(REM_CAR_STR_I + (slotNumber+1) + REM_CAR_STR_II);
     }
 
+    /**
+     *  return list of cars of a given colour in Parking lot
+     * @param colour of car desired
+     * @return arraylist of cars
+     */
     public ArrayList<Car> getCarsByColour(String colour){
 //        int colourCount=0;
         ArrayList<Car> colourList = new ArrayList<>();
@@ -119,6 +124,11 @@ public class ParkingLot {
         return colourList;
     }
 
+    /**
+     * Returns slot numbers for cars of a given colour
+     * @param colour desired colour
+     * @return string of parking slots
+     */
     public String slotNumbersForCarsColour(String colour){
         String slotStr = "";
         int numCarsColour = this.getCarsByColour(colour).size();
@@ -140,6 +150,10 @@ public class ParkingLot {
 
     }
 
+    /**
+     * Prints out registration numbers for all cars of a given colour
+     * @param colour desired colour of car
+     */
     public void registrationNumbersForCarsColour(String colour){
         ArrayList<Car> colList = this.getCarsByColour(colour);
         int i=0;

@@ -6,8 +6,9 @@ public class ParkingSpace {
     private Car carInSpace;
 
 
-    // Constructors
-
+    /**
+     * Constructors
+     */
     public ParkingSpace(){
         this.isFree=true;
     }
@@ -17,8 +18,10 @@ public class ParkingSpace {
         this.carInSpace = carInSpace;
     }
 
-    // getters and setters
-
+    /**
+     * getters and setters
+     * @return is space is free
+     */
     public boolean isFree() {
         return isFree;
     }
@@ -43,7 +46,6 @@ public class ParkingSpace {
         return isFree == that.isFree && this.carInSpace.equals(that.carInSpace);
     }
 
-    // methods
 
     @Override
     public String toString() {

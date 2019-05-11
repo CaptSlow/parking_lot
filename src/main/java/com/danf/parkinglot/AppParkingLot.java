@@ -37,6 +37,11 @@ public class AppParkingLot {
         this.runningMode = runningMode;
     }
 
+    /**
+     * Initial run method, goes to interactive mode or read in mode
+     * or undefined mode and stops
+     * @param args
+     */
     public void run(String[] args) {
 
         this.checkVariables(args);
@@ -88,6 +93,11 @@ public class AppParkingLot {
 
     }
 
+    /**
+     * read in file mode, gets content from file and loops rows of file and
+     * determines the commands
+     * @param fileName of static file with commands
+     */
     public void readInFileMode(String fileName){
         try {
             BufferedReader br = new BufferedReader(new FileReader(fileName));
@@ -107,6 +117,9 @@ public class AppParkingLot {
 
     }
 
+    /**
+     * Interactive mode method, gets user input and determines command
+     */
     public void interactiveMode(){
         String[] inArr = this.getUserInput();
 
@@ -119,18 +132,30 @@ public class AppParkingLot {
 
     }
 
+    /**
+     * scan user input
+     * @return String array of command and parameter
+     */
     public String[] getUserInput(){
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine().split(" ");
     }
 
+    /**
+     * Determines what action to take based on input from user:
+     * create_parking_lot, park, leave, status,
+     * registration_numbers_for_cars_with_colour,
+     * slot_numbers_for_cars_with_colour,
+     * slot_number_for_registration_number, exit or default
+     * @param inArr value inputted command from command line
+     */
     public void determineCommand(String[] inArr){
         String command = inArr[0];
 
         switch (command) {
             case "create_parking_lot":
                 if (inArr.length==2) {
-                    this.newParkingLotInteractive(Integer.parseInt(inArr[1]));
+                    this.setParkingLot(Integer.parseInt(inArr[1]));
                     if (this.runningMode==0){
                         this.interactiveMode();
                     }
@@ -205,10 +230,13 @@ public class AppParkingLot {
                     this.interactiveMode();
                 }
         }
-
     }
 
-    public void newParkingLotInteractive(int numSpaces){
+    /**
+     * create
+     * @param numSpaces size of new parking lot
+     */
+    public void setParkingLot(int numSpaces){
         this.parkingLot = new ParkingLot(numSpaces);
     }
 

@@ -54,6 +54,9 @@ public class ParkingLotTest {
         Assert.assertEquals(-1,myParking.firstFreeSpace());
     }
 
+    /**
+     * Tests the ParkingLot print method
+     */
     @Test
     public void parkingLotPrintTest(){
         int size = 2;

@@ -36,9 +36,12 @@ public class Car {
         Car car = (Car) o;
         return registrationNo.equals(car.getRegistrationNo()) && colour.equals(car.getColour());
     }
-    // methods
 
-    // makes the first chat of a string upper and the rest lower
+    /**
+     * makes the first char of a string upper and the rest lower
+     * @param str String to be lowered and capitalised at star
+     * @return string with capital first letter
+     */
     private String capitalise(String str){
         String lowStr = str.toLowerCase();
         return lowStr.substring(0, 1).toUpperCase() + lowStr.substring(1);

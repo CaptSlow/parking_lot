@@ -60,7 +60,6 @@ public class ParkingSpaceTest {
 
     }
 
-
     @Test
     public void parkingSpaceToStringTest(){
         Car myCar = new Car("Reg1","Green");
